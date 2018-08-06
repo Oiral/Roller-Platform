@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10722,7 +10722,7 @@ GameObject:
   - component: {fileID: 801646725}
   m_Layer: 0
   m_Name: Base
-  m_TagString: Untagged
+  m_TagString: PlayerBase
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15863,6 +15863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserPoint: {fileID: 1897462431}
+  ropePrefab: {fileID: 1088261125300294, guid: dc3a529f96f2d4b43b1f5850796474f9, type: 2}
 --- !u!1 &1897462431
 GameObject:
   m_ObjectHideFlags: 0
