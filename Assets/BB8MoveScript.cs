@@ -66,12 +66,20 @@ public class BB8MoveScript : MonoBehaviour {
 
     void Move()
     {
+        Vector3 forwardDir = transform.forward;
+        forwardDir.y = 0;
+        forwardDir.Normalize();
+
+        Vector3 rightDir = transform.right;
+        rightDir.y = 0;
+        rightDir.Normalize();
+
         //add force relative to direction of look
         verticalInput = verticalInput * moveSpeed;
         horizontalInput = horizontalInput * moveSpeed;
 
-        Vector3 forwardPush = transform.forward * verticalInput;
-        Vector3 sidewaysPush = transform.right * horizontalInput;
+        Vector3 forwardPush = forwardDir * verticalInput;
+        Vector3 sidewaysPush = rightDir * horizontalInput;
 
         rb.AddForce(forwardPush + sidewaysPush, ForceMode.Acceleration);
     }
