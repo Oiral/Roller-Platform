@@ -40,9 +40,6 @@ public class SwingScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
-        
-
         if (Input.GetButtonDown("Fire1"))
         {
             ToggleRope();
@@ -62,8 +59,6 @@ public class SwingScript : MonoBehaviour {
         {
             CheckRange();
         }
-        
-
 	}
 
     void CheckRange()
