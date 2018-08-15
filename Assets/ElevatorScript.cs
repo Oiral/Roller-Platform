@@ -22,7 +22,7 @@ public class ElevatorScript : MonoBehaviour {
     {
         foreach (Rigidbody rb in rbInTrigger)
         {
-            rb.AddForce(Vector3.up * 18, ForceMode.Acceleration);
+            rb.AddForce(transform.up * 18, ForceMode.Acceleration);
         }
     }
 }

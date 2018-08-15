@@ -19,7 +19,11 @@ public class SwingScript : MonoBehaviour {
 
     public float maxLength = 5;
 
+    float ropeLength;
+
     float ropeUpdateDistance = 0.1f;
+
+    public float retractSpeed = 1f;
 
     public Sprite[] hitMarkers;
 
@@ -47,6 +51,11 @@ public class SwingScript : MonoBehaviour {
 
         if (ropeActived)
         {
+            if (Input.GetButton("Fire2"))
+            {
+                ropeLength -= retractSpeed * Time.deltaTime;
+            }
+
             if (targetReticule != null)//Update target Reticule
                 targetReticule.sprite = hitMarkers[2];
 
@@ -114,6 +123,8 @@ public class SwingScript : MonoBehaviour {
                 pointsInRope.Add(hit.point);
                 lineRender.enabled = true;
 
+                ropeLength = maxLength;
+
                 //Add a configurable joint
                 ConfigurableJoint joint = playerBase.AddComponent<ConfigurableJoint>();
                 //Set up the configurable joint
@@ -122,7 +133,7 @@ public class SwingScript : MonoBehaviour {
                 joint.zMotion = ConfigurableJointMotion.Limited;
 
                 SoftJointLimit limits = new SoftJointLimit();
-                limits.limit = maxLength;
+                limits.limit = ropeLength;
                 limits.contactDistance = 2f;
                 joint.linearLimit = limits;
 
@@ -168,6 +179,7 @@ public class SwingScript : MonoBehaviour {
             Vector3 dirToPrevPoint = prevPoint - transform.position;
 
             if (Physics.Raycast(transform.position,dirToPrevPoint,out hit)){
+                Debug.DrawRay(transform.position, hit.point - transform.position,Color.red);
                 if (Vector3.Distance(prevPoint,hit.point) < ropeUpdateDistance)
                 {
                     pointsInRope.RemoveAt(pointsInRope.Count - 1);
@@ -200,7 +212,7 @@ public class SwingScript : MonoBehaviour {
         ConfigurableJoint joint = playerBase.GetComponent<ConfigurableJoint>();
 
         SoftJointLimit limits = joint.linearLimit;
-        limits.limit = maxLength - nonAttachechRopeLength;
+        limits.limit = ropeLength - nonAttachechRopeLength;
         joint.linearLimit = limits;
     }
 }

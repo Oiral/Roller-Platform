@@ -56,6 +56,12 @@ public class BB8MoveScript : MonoBehaviour {
             Jump();
         }
         
+
+        //exit game if hit escape
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     private void FixedUpdate()
