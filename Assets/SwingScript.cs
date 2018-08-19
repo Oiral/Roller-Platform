@@ -52,7 +52,7 @@ public class SwingScript : MonoBehaviour {
         if (ropeActived)
         {
             //Debug.Log(ropeLength);
-            Debug.Log(nonAttachechRopeLength);
+            //Debug.Log(nonAttachechRopeLength);
 
             if (targetReticule != null)//Update target Reticule
                 targetReticule.sprite = hitMarkers[2];
