@@ -51,10 +51,8 @@ public class SwingScript : MonoBehaviour {
 
         if (ropeActived)
         {
-            if (Input.GetButton("Fire2"))
-            {
-                ropeLength -= retractSpeed * Time.deltaTime;
-            }
+            //Debug.Log(ropeLength);
+            Debug.Log(nonAttachechRopeLength);
 
             if (targetReticule != null)//Update target Reticule
                 targetReticule.sprite = hitMarkers[2];
@@ -63,6 +61,22 @@ public class SwingScript : MonoBehaviour {
             DrawRope();
             CalculateRopeLength();
             MoveRopeAttachPoint();
+
+            //when you first press the wheel in button
+            if (Input.GetButtonDown("Fire2"))
+            {
+                //set the rope length to the current length
+
+                ropeLength = Vector3.Distance(transform.position, pointsInRope[pointsInRope.Count - 1]);
+                ropeLength += nonAttachechRopeLength;
+            }
+            else if (Input.GetButton("Fire2"))
+            {
+                //make the rope smaller
+                ropeLength -= retractSpeed * Time.deltaTime;
+            }
+
+
         }
         else
         {

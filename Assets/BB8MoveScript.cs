@@ -15,7 +15,7 @@ public class BB8MoveScript : MonoBehaviour {
 
     public float inAirSpeedMultiplier;
 
-    bool onGround;
+    public bool onGround;
 
     private void Start()
     {
