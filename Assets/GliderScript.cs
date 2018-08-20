@@ -12,6 +12,9 @@ public class GliderScript : MonoBehaviour {
 
     Rigidbody rb;
 
+    public GameObject gliderPrefab;
+    GameObject spawnedGlider;
+
     private void Start()
     {
         moveScript = GetComponent<BB8MoveScript>();
@@ -57,5 +60,22 @@ public class GliderScript : MonoBehaviour {
     {
         gliderActive = toggle;
         //toggle visuals for glider
+
+        //check if there is a glider prefab
+        if (gliderPrefab != null)
+        {
+            if (toggle)//if were turning the glider on
+            {
+                spawnedGlider = Instantiate(gliderPrefab, transform.position, Quaternion.LookRotation(transform.forward,Vector3.up) , transform);
+
+
+            }
+            else
+            {
+                Destroy(spawnedGlider);
+            }
+
+
+        }
     }
 }
