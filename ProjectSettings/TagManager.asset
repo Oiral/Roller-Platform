@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerBase
   - RopeEnd
+  - CrossHair
   layers:
   - Default
   - TransparentFX

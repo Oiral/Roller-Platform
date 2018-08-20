@@ -6,7 +6,7 @@ public class GliderScript : MonoBehaviour {
 
     BB8MoveScript moveScript;
 
-    public float glideDrag = 0.5f;
+    public float glideDrag = 0.1f;
 
     bool gliderActive;
 

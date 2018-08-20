@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class SwingScript : MonoBehaviour {
 
-    public List<Vector3> pointsInRope;
+    public List<Vector3> pointsInRope = new List<Vector3>();
 
     public bool ropeActived;
 
@@ -17,22 +17,24 @@ public class SwingScript : MonoBehaviour {
 
     float nonAttachechRopeLength;
 
-    public float maxLength = 5;
+    public float maxLength = 2;
 
     float ropeLength;
 
     float ropeUpdateDistance = 0.1f;
 
-    public float retractSpeed = 1f;
+    public float retractSpeed = 0f;
 
     public Sprite[] hitMarkers;
 
-    public Image targetReticule;
+    Image targetReticule;
 
     private void Start()
     {
         lineRender = GetComponent<LineRenderer>();
         playerBase = GameObject.FindGameObjectWithTag("PlayerBase");
+
+        targetReticule = GameObject.FindGameObjectWithTag("CrossHair").GetComponent<Image>();
 
         //set up the rope attach point
         ropeAttachPoint = new GameObject();
