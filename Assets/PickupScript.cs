@@ -11,9 +11,6 @@ public class PickupScript : MonoBehaviour {
 
     public pickupType typeOfPickup;
 
-    public Sprite[] reticules;
-
-
     private void Start()
     {
         startingPos = transform.position;
@@ -34,8 +31,9 @@ public class PickupScript : MonoBehaviour {
     {
         if(other.tag == "PlayerBase")
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player == null)
+            UnlockScript unlocks = other.GetComponentInParent<UnlockScript>();
+            Debug.Log("collision");
+            if (unlocks == null)
             {
                 return;
             }
@@ -44,35 +42,24 @@ public class PickupScript : MonoBehaviour {
             {
                 case pickupType.ropeLength:
                     //check if the player has a grapple
-                    if (player.GetComponent<SwingScript>() != null)
-                    {
                         Debug.Log("Rope Length");
-                        player.GetComponent<SwingScript>().maxLength += 1;
+                        unlocks.gameObject.GetComponentInChildren<SwingScript>().maxLength += 1;
                         Destroy(gameObject);
-                    }
                     break;
                 case pickupType.grapple:
                     //check if the player has the rope
-                    if (player.GetComponent<SwingScript>() == null)
-                    {
-                        //add a grapple to the player
-                        SwingScript swing = player.AddComponent<SwingScript>();
-                        swing.hitMarkers = reticules;
-                    }
+                    unlocks.grapple = true;
+                    Destroy(gameObject);
                     break;
                 case pickupType.parachute:
                     //check if the player doesnt have a glider script attached
-                    if (player.GetComponent<GliderScript>() == null)
-                    {
-                        player.AddComponent<GliderScript>();
-                    }
+                    unlocks.glider = true;
+                    Destroy(gameObject);
                     break;
                 case pickupType.grappleWind:
                     //Check if the player has the grapple
-                    if (player.GetComponent<SwingScript>() != null)
-                    {
-                        player.GetComponent<SwingScript>().retractSpeed = 1;
-                    }
+                    unlocks.reel = true;
+                    Destroy(gameObject);
                     break;
                 default:
                     break;

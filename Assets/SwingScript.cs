@@ -29,11 +29,13 @@ public class SwingScript : MonoBehaviour {
 
     Image targetReticule;
 
+    UnlockScript unlocks;
+
     private void Start()
     {
         lineRender = GetComponent<LineRenderer>();
         playerBase = GameObject.FindGameObjectWithTag("PlayerBase");
-
+        unlocks = GetComponentInParent<UnlockScript>();
         targetReticule = GameObject.FindGameObjectWithTag("CrossHair").GetComponent<Image>();
 
         //set up the rope attach point
@@ -46,8 +48,10 @@ public class SwingScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (Input.GetButtonDown("Fire1"))
+        //check if the player has unlocked the grapple
+        if (Input.GetButtonDown("Fire1") && unlocks.grapple)
         {
+            
             ToggleRope();
         }
 
@@ -64,18 +68,22 @@ public class SwingScript : MonoBehaviour {
             CalculateRopeLength();
             MoveRopeAttachPoint();
 
-            //when you first press the wheel in button
-            if (Input.GetButtonDown("Fire2"))
+            //if you can reel in
+            if (unlocks.reel)
             {
-                //set the rope length to the current length
+                //when you first press the wheel in button
+                if (Input.GetButtonDown("Fire2"))
+                {
+                    //set the rope length to the current length
 
-                ropeLength = Vector3.Distance(transform.position, pointsInRope[pointsInRope.Count - 1]);
-                ropeLength += nonAttachechRopeLength;
-            }
-            else if (Input.GetButton("Fire2"))
-            {
-                //make the rope smaller
-                ropeLength -= retractSpeed * Time.deltaTime;
+                    ropeLength = Vector3.Distance(transform.position, pointsInRope[pointsInRope.Count - 1]);
+                    ropeLength += nonAttachechRopeLength;
+                }
+                else if (Input.GetButton("Fire2"))
+                {
+                    //make the rope smaller
+                    ropeLength -= retractSpeed * Time.deltaTime;
+                }
             }
 
 
