@@ -325,6 +325,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glideDrag: 0.1
+  gliderPrefab: {fileID: 1480061029463246, guid: 28d84afdd41aa2640b712862ae77fbaa,
+    type: 2}
 --- !u!114 &114141720862923324
 MonoBehaviour:
   m_ObjectHideFlags: 1
