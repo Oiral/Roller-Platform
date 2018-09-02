@@ -15,17 +15,20 @@ public class GliderScript : MonoBehaviour {
     public GameObject gliderPrefab;
     GameObject spawnedGlider;
 
+    UnlockScript unlocks;
+
     private void Start()
     {
         moveScript = GetComponent<BB8MoveScript>();
         rb = moveScript.bb8Base.GetComponent<Rigidbody>();
+        unlocks = GetComponentInParent<UnlockScript>();
     }
 
     private void Update()
     {
         //Toggle the glider if the player is in the air and they jump
         //This means they can enable it and also disable it
-        if (moveScript.onGround == false && Input.GetButtonDown("Jump"))
+        if (moveScript.onGround == false && Input.GetButtonDown("Jump") && unlocks.glider)
         {
             Debug.Log("Glide");
             //toggle the glider
